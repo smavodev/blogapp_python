@@ -36,9 +36,12 @@ class Post(models.Model):
         verbose_name_plural = 'posts'
         ordering = ['title', 'last_updated']
 
+    def __str__(self):
+        return self.title
+
 
 class Comments(models.Model):
-    content = models.TextField()
+    content = models.TextField(verbose_name="Comentario")
     date = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
@@ -46,6 +49,9 @@ class Comments(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     parent = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='replies')
+
+    def __str__(self):
+        return self.content
 
     class Meta:
         verbose_name = 'comments'
