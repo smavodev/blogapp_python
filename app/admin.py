@@ -17,7 +17,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'content', 'date')
+    list_display = ('name', 'email', 'date')
     list_display_links = ('name', 'email')
 
 

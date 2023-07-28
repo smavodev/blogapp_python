@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from app.models import Post, Tag
+from app.models import Post, Tag, Comments
 from app.forms import CommentForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def index(request):
@@ -9,7 +11,7 @@ def index(request):
 
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
-
+    comments = Comments.objects.filter(post=post)
     form = CommentForm()
 
     if request.POST:
@@ -20,6 +22,7 @@ def post_page(request, slug):
             post = Post.objects.get(id=postid)
             comment.post = post
             comment.save()
+            return HttpResponseRedirect(reverse('post_page', kwargs={'slug': slug}))
 
     tags = Tag.objects.all()
 
@@ -33,6 +36,7 @@ def post_page(request, slug):
     context = {
         'post': post,
         'form': form,
+        'comments': comments,
         'tags': tags,
     }
     return render(request, 'app/post.html', context)

@@ -633,7 +633,7 @@ footer .container {
 }
 
 .user-comment {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .comment {
@@ -678,7 +678,7 @@ footer .container {
 .social-share {
   margin-top: 5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
   padding-top: 2rem;
   padding-bottom: 5rem;
   border-bottom: 1px solid #00000018;
