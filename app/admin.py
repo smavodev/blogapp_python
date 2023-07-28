@@ -3,7 +3,7 @@ from app.models import Post, Tag
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug')
+    list_display = ('title', 'slug', 'view_count')
     list_display_links = ('title', 'slug')
     list_filter = ('title', 'slug')
 
