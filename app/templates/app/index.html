@@ -5,371 +5,207 @@
 {% block title %}Blog | Welcome{% endblock title %}
 
 {% block content %}
-  <main>
+
+    <section class="sp">
       <div class="container">
-        <div class="layout">
-          <!-- left layout -->
-          <div class="left">
-            <div class="page-top">
-              <div class="top flex">
-                <div class="page-name">
-                  <a href="#" class="learn">
-                    <span class="material-icons"> keyboard_return </span> Go
-                    back
-                  </a>
-                  <h1>Blog</h1>
-                </div>
-                <div class="search-bar s-active">
-                  <input type="text" placeholder="Search" />
-                  <div class="animated-search">
-                    <i class="uil uil-search"></i>
+        <div class="grid-2">
+          <div class="post-img">
+            <img src="{% static 'images/post.png' %}" alt="" />
+          </div>
+          <div class="post-content">
+            <div class="cetagory">
+              <p>Category name</p>
+            </div>
+            <h1>
+              Lorem ipsum began as scrambled, nonsensical Latin derived from
+              Cicero's 1st-century BC text.
+            </h1>
+            <p class="des">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure
+              ullam animi repellat non ut delectus culpa! Iste quia corporis
+              illum doloribus facilis quo totam eveniet sapiente odit
+              cupiditate? Cumque, nam?
+            </p>
+            <a class="learn" href="#"
+              >Learn more <span class="material-icons"> trending_flat </span></a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sp">
+      <div class="container">
+        <h1 class="sec-title">Top blogs</h1>
+        <div class="grid-3">
+          <!-- card -->
+          <a href="#">
+            <div class="card">
+              <div class="post-img">
+                <img src="{% static 'images/post.png' %}" alt="" />
+                <div class="tag">Tag name</div>
+              </div>
+              <div class="card-content">
+                <h3>
+                  A blog title and other stuffs will add here, also we can
+                  include.
+                </h3>
+                <div class="author">
+                  <div class="profile-pic">
+                    <img src="{% static 'images/author.svg' %}" alt="" />
+                  </div>
+                  <div class="details">
+                    <p>Author name</p>
+                    <small>June 20, 2022</small>
                   </div>
                 </div>
               </div>
             </div>
-
-            <center>
-              <div class="typo">
-                <h1 class="title">Category name</h1>
-                <p>
-                  Lorem ipsum began as scrambled, nonsensical Latin derived from
-                  Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-                </p>
+          </a>
+          <!-- card end-->
+          <!-- card -->
+          <a href="#">
+            <div class="card">
+              <div class="post-img">
+                <img src="{% static 'images/post.png' %}" alt="" />
+                <div class="tag">Tag name</div>
               </div>
-            </center>
-            <section class="sp">
-              <div class="container">
-                <h1 class="sec-title">Top posts</h1>
-                <div class="grid-2 blog">
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                </div>
-              </div>
-            </section>
-            <section class="sp">
-              <div class="container">
-                <h1 class="sec-title">Treandy</h1>
-                <div class="grid-3 blog-grid">
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                </div>
-                <center>
-                  <button class="btn btn-primary rounded view">
-                    View more
-                    <span class="material-icons"> trending_flat </span>
-                  </button>
-                </center>
-              </div>
-            </section>
-            <section class="sp">
-              <div class="container">
-                <h1 class="sec-title">Featueal</h1>
-                <div class="grid-3 blog-grid">
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                  <!-- card -->
-                  <a href="#">
-                    <div class="card">
-                      <div class="post-img">
-                        <img src="{% static 'images/post.png' %}" alt="" />
-                        <div class="tag">Tag name</div>
-                      </div>
-                      <div class="card-content">
-                        <h3>
-                          A blog title and other stuffs will add here, also we
-                          can include.
-                        </h3>
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>Author name</p>
-                            <small>June 20, 2022</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- card end-->
-                </div>
-                <center>
-                  <button class="btn btn-primary rounded view">
-                    View more
-                    <span class="material-icons"> trending_flat </span>
-                  </button>
-                </center>
-              </div>
-            </section>
-          </div>
-          <!-- left layout end -->
-
-          <!-- right layout -->
-          <div class="right">
-            <div class="block">
-              <h2 class="title2">Other category</h2>
-              <div class="card">
+              <div class="card-content">
                 <h3>
-                  A blog title and other stuffs will add here, lso we can
-                  incluse.
+                  A blog title and other stuffs will add here, also we can
+                  include.
                 </h3>
-                <p>
-                  Lorem ipsum began as scrambled, nonsensical Latin derived from
-                  Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-                </p>
-                <a class="learn" href="#"
-                  >Learn more
-                  <span class="material-icons"> trending_flat </span></a
-                >
-              </div>
-              <div class="card">
-                <h3>
-                  A blog title and other stuffs will add here, lso we can
-                  incluse.
-                </h3>
-                <p>
-                  Lorem ipsum began as scrambled, nonsensical Latin derived from
-                  Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-                </p>
-                <a class="learn" href="#"
-                  >Learn more
-                  <span class="material-icons"> trending_flat </span></a
-                >
-              </div>
-              <div class="card">
-                <h3>
-                  A blog title and other stuffs will add here, lso we can
-                  incluse.
-                </h3>
-                <p>
-                  Lorem ipsum began as scrambled, nonsensical Latin derived from
-                  Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-                </p>
-                <a class="learn" href="#"
-                  >Learn more
-                  <span class="material-icons"> trending_flat </span></a
-                >
+                <div class="author">
+                  <div class="profile-pic">
+                    <img src="{% static 'images/author.svg' %}" alt="" />
+                  </div>
+                  <div class="details">
+                    <p>Author name</p>
+                    <small>June 20, 2022</small>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div class="block">
-              <h2 class="title2">Top category</h2>
-              <div class="card">
-                <h3>
-                  A blog title and other stuffs will add here, lso we can
-                  incluse.
-                </h3>
-                <p>
-                  Lorem ipsum began as scrambled, nonsensical Latin derived from
-                  Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-                </p>
-                <a class="learn" href="#"
-                  >Learn more
-                  <span class="material-icons"> trending_flat </span></a
-                >
+          </a>
+          <!-- card end-->
+          <!-- card -->
+          <a href="#">
+            <div class="card">
+              <div class="post-img">
+                <img src="{% static 'images/post.png' %}" alt="" />
+                <div class="tag">Tag name</div>
               </div>
-              <div class="card">
+              <div class="card-content">
                 <h3>
-                  A blog title and other stuffs will add here, lso we can
-                  incluse.
+                  A blog title and other stuffs will add here, also we can
+                  include.
                 </h3>
-                <p>
-                  Lorem ipsum began as scrambled, nonsensical Latin derived from
-                  Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-                </p>
-                <a class="learn" href="#"
-                  >Learn more
-                  <span class="material-icons"> trending_flat </span></a
-                >
-              </div>
-              <div class="card">
-                <h3>
-                  A blog title and other stuffs will add here, lso we can
-                  incluse.
-                </h3>
-                <p>
-                  Lorem ipsum began as scrambled, nonsensical Latin derived from
-                  Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-                </p>
-                <a class="learn" href="#"
-                  >Learn more
-                  <span class="material-icons"> trending_flat </span></a
-                >
+                <div class="author">
+                  <div class="profile-pic">
+                    <img src="{% static 'images/author.svg' %}" alt="" />
+                  </div>
+                  <div class="details">
+                    <p>Author name</p>
+                    <small>June 20, 2022</small>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- right layout end -->
+          </a>
+          <!-- card end-->
         </div>
+        <center>
+          <a href=""><button class="btn btn-primary rounded view">
+            View more <span class="material-icons"> trending_flat </span>
+          </button></a>
+        </center>
       </div>
-    </main>
+    </section>
+    <section class="sp">
+      <div class="container">
+        <h1 class="sec-title">New blogs</h1>
+        <div class="grid-3">
+          <!-- card -->
+          <a href="#">
+            <div class="card">
+              <div class="post-img">
+                <img src="{% static 'images/post.png' %}" alt="" />
+                <div class="tag">Tag name</div>
+              </div>
+              <div class="card-content">
+                <h3>
+                  A blog title and other stuffs will add here, also we can
+                  include.
+                </h3>
+                <div class="author">
+                  <div class="profile-pic">
+                    <img src="{% static 'images/author.svg' %}" alt="" />
+                  </div>
+                  <div class="details">
+                    <p>Author name</p>
+                    <small>June 20, 2022</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- card end-->
+          <!-- card -->
+          <a href="#">
+            <div class="card">
+              <div class="post-img">
+                <img src="{% static 'images/post.png' %}" alt="" />
+                <div class="tag">Tag name</div>
+              </div>
+              <div class="card-content">
+                <h3>
+                  A blog title and other stuffs will add here, also we can
+                  include.
+                </h3>
+                <div class="author">
+                  <div class="profile-pic">
+                    <img src="{% static 'images/author.svg' %}" alt="" />
+                  </div>
+                  <div class="details">
+                    <p>Author name</p>
+                    <small>June 20, 2022</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- card end-->
+          <!-- card -->
+          <a href="#">
+            <div class="card">
+              <div class="post-img">
+                <img src="{% static 'images/post.png' %}" alt="" />
+                <div class="tag">Tag name</div>
+              </div>
+              <div class="card-content">
+                <h3>
+                  A blog title and other stuffs will add here, also we can
+                  include.
+                </h3>
+                <div class="author">
+                  <div class="profile-pic">
+                    <img src="{% static 'images/author.svg' %}" alt="" />
+                  </div>
+                  <div class="details">
+                    <p>Author name</p>
+                    <small>June 20, 2022</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- card end-->
+        </div>
+        <center>
+          <a href=""><button class="btn btn-primary rounded view">
+            View more <span class="material-icons"> trending_flat </span>
+          </button></a>
+        </center>
+      </div>
+    </section>
 
 {% endblock content %}
