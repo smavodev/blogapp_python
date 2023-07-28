@@ -85,109 +85,106 @@
                           </div>
                         </div>
                       </div>
-
                     </div>
                   </div>
 
-
-                  {% for comment in comments %}
+                  <div>
+                    {% for comment in comments %}
                     <!-- comments -->
                     <div class="user-comment">
-                        <div class="author">
-                          <div class="profile-pic">
-                            <img src="{% static 'images/author.svg' %}" alt="" />
-                          </div>
-                          <div class="details">
-                            <p>{{comment.name}}</p>
-                            <small>{{comment.date|date}}</small>
-                          </div>
+                      <div class="author">
+                        <div class="profile-pic">
+                          <img src="{% static 'images/author.svg' %}" alt="" />
                         </div>
-                        <div class="comment-sec-main">
-                          <div class="comment-sec">
-                            <div class="comment">
-                              <p>
-                                {{comment.content}}
-                              </p>
-                            </div>
-                            <div class="reply">
-                              <button onclick="toggleDiv(this)">Reply</button>
-                            </div>
-                            <div class="comment-box" id="comment-reply-box">
-                              <h3>Reply to post</h3>
-                              <p>
-                                Your email address will not be published. Required fields
-                                are marked<span>*</span>
-                              </p>
-                              <form method="POST">
-                                {% csrf_token %}
-                                {{form.content}}
-                                <div class="grid-3">
-                                  <input type="hidden" name="post_id" value="{{post.id}}">
-                                  <input type="hidden" name="parent" value="{{comment.id}}">
-                                  {{form.name}}
-                                  {{form.email}}
-                                  {{form.website}}
-                                </div>
-
-                                <button class="btn btn-primary rounded">
-                                  Post Reply
-                                </button>
-                              </form>
-                            </div>
-
-                          </div>
-
-                          {% for reply in comment.replies.all %}
-                          <div class="public-reply">
-                            <div class="author">
-                              <div class="profile-pic">
-                                <img src="{% static 'images/author.svg' %}" alt="" />
-                              </div>
-                              <div class="details">
-                                <p>{{reply.name}}</p>
-                                <small>{{reply.date|date}}</small>
-                              </div>
-                            </div>
-                            <div class="comment">
-                              <p>
-                                {{reply.content}}
-                              </p>
-                            </div>
-                          </div>
-                          {% endfor %}
-
+                        <div class="details">
+                          <p>{{comment.name}}</p>
+                          <small>{{comment.date|date}}</small>
                         </div>
                       </div>
+                      <div class="comment-sec-main">
+                        <div class="comment-sec">
+                          <div class="comment">
+                            <p>
+                              {{comment.content}}
+                            </p>
+                          </div>
+                          <div class="reply">
+                            <button onclick="toggleDiv(this)">Reply</button>
+                          </div>
+                          <div class="comment-box" id="comment-reply-box">
+                            <h3>Reply to post</h3>
+                            <p>
+                              Your email address will not be published. Required fields
+                              are marked<span>*</span>
+                            </p>
+                            <form method="POST">
+                              {% csrf_token %}
+                              {{form.content}}
+                              <div class="grid-3">
+                                <input type="hidden" name="post_id" value="{{post.id}}">
+                                <input type="hidden" name="parent" value="{{comment.id}}">
+                                {{form.name}}
+                                {{form.email}}
+                                {{form.website}}
+                              </div>
+
+                              <button class="btn btn-primary rounded">
+                                Post Reply
+                              </button>
+                            </form>
+                          </div>
+
+                        </div>
+
+                        {% for reply in comment.replies.all %}
+                        <div class="public-reply">
+                          <div class="author">
+                            <div class="profile-pic">
+                              <img src="{% static 'images/author.svg' %}" alt="" />
+                            </div>
+                            <div class="details">
+                              <p>{{reply.name}}</p>
+                              <small>{{reply.date|date}}</small>
+                            </div>
+                          </div>
+                          <div class="comment">
+                            <p>
+                              {{reply.content}}
+                            </p>
+                          </div>
+                        </div>
+                        {% endfor %}
+
+                      </div>
+                    </div>
                     <!-- Comment end -->
-                  {% endfor %}
-
-                  <!-- comment box -->
-                  <div class="comment-box">
-                    <h3>Leave a new comment to this post</h3>
-                    <p>
-                      Your email address will not be published. Required fields
-                      are marked<span>*</span>
-                    </p>
-                    <form method="POST">
-                      {% csrf_token %}
-                      {{form.content}}
-                      <div class="grid-3">
-                        <input type="hidden" name="post_id" value="{{post.id}}">
-                        {{form.name}}
-                        {{form.email}}
-                        {{form.website}}
-                      </div>
-                      <button class="btn btn-primary rounded">
-                        Post comment
-                      </button>
-                    </form>
+                    {% endfor %}
                   </div>
+                  <br/>
 
+                  <div class="comment-box">
+                  <h3>Leave a new comment to this post</h3>
+                  <p>
+                    Your email address will not be published. Required fields
+                    are marked<span>*</span>
+                  </p>
+                  <form method="POST">
+                    {% csrf_token %}
+                    {{form.content}}
+                    <div class="grid-3">
+                      <input type="hidden" name="post_id" value="{{post.id}}">
+                      {{form.name}}
+                      {{form.email}}
+                      {{form.website}}
+                    </div>
+                    <button class="btn btn-primary rounded">
+                      Post comment
+                    </button>
+                  </form>
                 </div>
-                <!-- blog post end -->
+
               </div>
             </section>
-
           </div>
           <!-- left layout end -->
 

@@ -324,7 +324,7 @@ header .container {
   background: var(--red);
   color: white;
   border-radius: 5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   font-size: 1.2rem;
 }
 
@@ -1061,6 +1061,12 @@ main {
 .likes button i {
   font-size: 3rem;
 }
+
 .reply button {
-  background: transparent;
+    background: var(--red);
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    padding: 5px 10px;
 }
