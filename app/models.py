@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
@@ -34,3 +35,18 @@ class Post(models.Model):
         verbose_name = 'posts'
         verbose_name_plural = 'posts'
         ordering = ['title', 'last_updated']
+
+
+class Comments(models.Model):
+    content = models.TextField()
+    date = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    website = models.CharField(max_length=200)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'comments'
+        verbose_name_plural = 'comments'
+
