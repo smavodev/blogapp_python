@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app.models import Post
+from app.models import Post, Tag
 
 
 def index(request):
@@ -8,5 +8,11 @@ def index(request):
 
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
-    return render(request, 'app/post.html')
+    tags = Tag.objects.all()
+
+    context = {
+        'post': post,
+        'tags': tags,
+    }
+    return render(request, 'app/post.html', context)
 
