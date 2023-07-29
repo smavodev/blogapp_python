@@ -3,7 +3,7 @@ from app.models import Post, Tag, Comments, Subscribe
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'view_count', 'modified_date')
+    list_display = ('title', 'slug', 'view_count', 'is_featured', 'modified_date')
     prepopulated_fields = {'slug': ['title']}
     list_display_links = ('title', 'slug')
     list_filter = ('title', 'slug')
