@@ -3,10 +3,11 @@ from app.models import Post, Tag, Comments
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'view_count')
+    list_display = ('title', 'slug', 'view_count', 'modified_date')
     prepopulated_fields = {'slug': ['title']}
     list_display_links = ('title', 'slug')
     list_filter = ('title', 'slug')
+    readonly_fields = ('created_date', 'modified_date')
 
 
 class TagAdmin(admin.ModelAdmin):

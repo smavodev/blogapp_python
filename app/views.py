@@ -6,7 +6,15 @@ from django.urls import reverse
 
 
 def index(request):
-    return render(request, 'app/index.html')
+    posts = Post.objects.all()
+    top_posts = Post.objects.all().order_by('-view_count')[0:3]
+    recent_posts = Post.objects.all().order_by('-created_date')[0:3]
+    context = {
+        'posts': posts,
+        'top_posts': top_posts,
+        'recent_posts': recent_posts,
+    }
+    return render(request, 'app/index.html', context)
 
 
 def post_page(request, slug):
