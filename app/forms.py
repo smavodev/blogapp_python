@@ -2,6 +2,7 @@ from django import forms
 from app.models import Comments, Subscribe
 from django.utils.translation import gettext_lazy as _
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments

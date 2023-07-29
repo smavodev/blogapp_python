@@ -27,10 +27,11 @@ class Post(models.Model):
     content = RichTextField(verbose_name="Contenido")
     last_updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=200, unique=True)
-    image = models.ImageField(null=True, blank=True, upload_to="images/")
+    image = models.ImageField(null=True, blank=True, upload_to="images/post")
     tags = models.ManyToManyField(Tag, blank=True, related_name='post')
     view_count = models.IntegerField(null=True, blank=True)
     is_featured = models.BooleanField(default=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
@@ -71,4 +72,26 @@ class Subscribe(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(null=True, blank=True, upload_to="images/profile")
+    slug = models.SlugField(max_length=200, unique=True)
+    bio = RichTextField(verbose_name="Biografia")
+
+    class Meta:
+        verbose_name = 'profiles'
+        verbose_name_plural = 'profiles'
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.user.username)
+        return super(Profile, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+
 

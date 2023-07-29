@@ -24,52 +24,11 @@
     <!-- navbar -->
     {% include 'includes/navbar.html' %}
 
-    <main class="sp">
-      <div class="container">
-        <center>
-          <div class="search-bar">
-            <input type="text" placeholder="Search" />
-            <div class="animated-search" onclick="searchbar()">
-              <i class="uil uil-search"></i>
-            </div>
-          </div>
-          <div class="typo">
-            {% if website_info.title %}
-              <h1 class="title">{{website_info.title}}</h1>
-            {% else %}
-              <h1 class="title">Website blog title</h1>
-            {% endif %}
-
-            {% if website_info.description %}
-            <p>
-              {{website_info.description}}
-            </p>
-            {% else %}
-            <p>
-              Lorem ipsum began as scrambled, nonsensical Latin derived from
-              Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-            </p>
-            {% endif %}
-          </div>
-          <div class="newsletter">
-            {% if request.session.subscribed == None %}
-            <form method="POST">
-              {% csrf_token %}
-              {{subscribe_form}}
-              <button class="btn btn-primary">Subscribe</button>
-            </form>
-            {% endif %}
-            {% if subscribe_successful %}
-            <br><p>Subscribed Successfully</p>
-            {% endif %}
-          </div>
-        </center>
-      </div>
-    </main>
-
+    <main>
     {% block content %}
 
     {% endblock content %}
+    </main>
 
     <!-- footer -->
     {% include 'includes/footer.html' %}

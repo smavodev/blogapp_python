@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Post, Tag, Comments, Subscribe
+from app.models import Post, Tag, Comments, Subscribe, Profile
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -27,8 +27,13 @@ class SuscribeAdmin(admin.ModelAdmin):
     list_display_links = ('email', 'date')
 
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'slug')
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comments, CommentAdmin)
 admin.site.register(Subscribe)
+admin.site.register(Profile, ProfileAdmin)
 

@@ -1,8 +1,10 @@
+from django.db.models import Count
 from django.shortcuts import render
-from app.models import Post, Tag, Comments
+from app.models import Post, Tag, Comments, Profile
 from app.forms import CommentForm, SubscribeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -63,8 +65,6 @@ def post_page(request, slug):
                 comment.save()
                 return HttpResponseRedirect(reverse('post_page', kwargs={'slug': slug}))
 
-    tags = Tag.objects.all()
-
     if post.view_count is None:
         post.view_count = 1
     else:
@@ -72,11 +72,18 @@ def post_page(request, slug):
         post.view_count += 1
     post.save()
 
+    recent_posts = Post.objects.exclude(id=post.id).order_by('-last_updated')[0:3]
+    top_authors = User.objects.annotate(number=Count('post')).order_by('-number')
+    tags = Tag.objects.all()
+    related_posts = Post.objects.exclude(id=post.id).filter(author=post.author)[0:3]
     context = {
         'post': post,
         'form': form,
         'comments': comments,
         'tags': tags,
+        'recent_posts': recent_posts,
+        'top_authors': top_authors,
+        'related_posts': related_posts
     }
     return render(request, 'app/post.html', context)
 
@@ -96,3 +103,17 @@ def tag_page(request, slug):
     }
     return render(request, 'app/tag.html', context)
 
+
+def author_page(request, slug):
+    profile = Profile.objects.get(slug=slug)
+
+    top_posts = Post.objects.filter(author=profile.user).order_by('-view_count')[0:2]
+    recent_posts = Post.objects.filter(author=profile.user).order_by('-last_updated')[0:2]
+    top_authors = User.objects.annotate(number=Count('post')).order_by('number')
+
+    context = {
+        'profile': profile,
+        'top_posts': top_posts,
+        'recent_posts': recent_posts,
+        'top_authors': top_authors}
+    return render(request, 'app/author.html', context)

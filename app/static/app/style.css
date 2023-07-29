@@ -371,6 +371,7 @@ header .container {
 .author small {
   color: var(--black);
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .view {
