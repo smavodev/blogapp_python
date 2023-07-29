@@ -59,3 +59,15 @@ class Comments(models.Model):
         verbose_name = 'comments'
         verbose_name_plural = 'comments'
 
+
+class Subscribe(models.Model):
+    email = models.EmailField(max_length=100)
+    date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'suscribe'
+        verbose_name_plural = 'suscribes'
+
+    def __str__(self):
+        return self.email
+
