@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Post, Tag, Comments, Subscribe, Profile
+from app.models import Post, Tag, Comments, Subscribe, Profile, WebsiteMeta
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -31,9 +31,13 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'slug')
 
 
+class WebsiteMetaAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description')
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comments, CommentAdmin)
 admin.site.register(Subscribe)
 admin.site.register(Profile, ProfileAdmin)
-
+admin.site.register(WebsiteMeta, WebsiteMetaAdmin)

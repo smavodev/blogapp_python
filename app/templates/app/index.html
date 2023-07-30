@@ -16,6 +16,7 @@
             </a>
           </div>
 
+          <!-- Meta -->
           <div class="typo">
             {% if website_info.title %}
               <h1 class="title">{{website_info.title}}</h1>
@@ -24,16 +25,13 @@
             {% endif %}
 
             {% if website_info.description %}
-            <p>
-              {{website_info.description}}
-            </p>
+              <p>{{website_info.description|safe}}</p>
             {% else %}
-            <p>
-              Lorem ipsum began as scrambled, nonsensical Latin derived from
-              Cicero's 1st-century BC text De Finibus Bonorum et Malorum.
-            </p>
+            <p>Lorem ipsum began as scrambled, nonsensical Latin derived from
+              Cicero's 1st-century BC text De Finibus Bonorum et Malorum.</p>
             {% endif %}
           </div>
+
           <div class="newsletter">
             {% if request.session.subscribed == None %}
             <form method="POST">

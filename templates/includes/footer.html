@@ -3,13 +3,15 @@
       <div class="container">
         <div class="grid-4">
           <div class="logo f-logo">
-            <i class="fa-brands fa-blogger"></i>
+            <a class="logo" href="{% url 'index' %}">
+              <i class="fa-brands fa-blogger"></i>
+            </a>
           </div>
           <div class="link">
             <h2>Quick link</h2>
             <div class="q-link">
               <a href="{% url 'index' %}">Home</a>
-              <a href="#">Blog</a>
+              <a href="{% url 'about' %}">About</a>
               <a href="#">Unsubscribe</a>
             </div>
           </div>
@@ -25,14 +27,8 @@
             <h2>Subscribe</h2>
             <div class="newsletter">
               <form method="POST">
-                <input
-                  type="email"
-                  name="email"
-                  maxlength="100"
-                  placeholder="Enter your email"
-                  required=""
-                  id="id_email"
-                />
+                <input type="email" name="email" maxlength="100"
+                  placeholder="Enter your email" required="" id="id_email" />
                 <button class="btn btn-primary">Subscribe</button>
               </form>
             </div>
@@ -40,18 +36,10 @@
         </div>
         <div class="share">
           <div class="social">
-            <a href="#">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a href="#">
-              <i class="fa-brands fa-twitter"></i>
-            </a>
+            <a href="#"> <i class="fa-brands fa-facebook-f"></i> </a>
+            <a href="#"> <i class="fa-brands fa-instagram"></i> </a>
+            <a href="#"> <i class="fa-brands fa-linkedin-in"></i> </a>
+            <a href="#"> <i class="fa-brands fa-twitter"></i> </a>
           </div>
         </div>
       </div>

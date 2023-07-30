@@ -96,5 +96,14 @@ class Profile(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
+class WebsiteMeta(models.Model):
+    title = models.CharField(verbose_name="Titulo", max_length=200)
+    description = models.CharField(verbose_name="Descripcion", max_length=500)
+    about = RichTextField(verbose_name="About")
 
+    class Meta:
+        verbose_name = 'website metas'
+        verbose_name_plural = 'website metas'
 
+    def __str__(self):
+        return self.title
