@@ -19,6 +19,7 @@
   --shadow: #ffffff1a 0px 1px 1px 0px inset, #32325d40 0px 50px 100px -20px,
     #0000004d 0px 30px 60px -30px;
   --shadow2: rgba(17, 12, 46, 0.084) 0px 48px 100px 0px;
+  --green: #28a745;
 }
 
 html {
@@ -101,15 +102,39 @@ header .container {
 .btn-primary {
   background: var(--red);
   color: white;
+  border-radius: 1rem;
+}
+
+
+.btn-primary:hover{
+    box-shadow: 0 10px 15px #E78484;
 }
 
 .btn-scoundary {
   background: transparent;
   color: var(--red);
+  border-radius: 1rem;
 }
 
+.btn-scoundary:hover {
+    box-shadow: 0 15px 20px #00000018;
+}
+
+.btn-primary-suscribed {
+    background: var(--red);
+    color: white;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+
+.btn-primary-suscribed:hover{
+    box-shadow: 0 10px 15px #E78484;
+}
+
+
 .rounded {
-  border-radius: 5rem;
+  border-radius: 1rem;
 }
 
 .action-btn,
@@ -216,6 +241,8 @@ header .container {
   height: 5rem;
   width: 30rem;
   padding: 0 2rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 /* post section */
@@ -380,8 +407,9 @@ header .container {
 
 /* footer */
 .grid-4 {
-  grid-template-columns: 1fr 3fr 3fr auto;
+  grid-template-columns: 1fr 2fr 2fr 3fr;
   align-items: flex-start;
+  text-align: center;
 }
 
 .logo {
@@ -394,6 +422,11 @@ header .container {
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
+  font-weight: 550;
+}
+
+.q-link > a:hover{
+    color: var(--red)
 }
 
 .link h2,
@@ -409,7 +442,7 @@ header .container {
 
 footer {
   padding: 5rem 0;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 }
 
 footer .container {
@@ -420,13 +453,15 @@ footer .container {
 .share {
   width: fit-content;
   margin: auto;
-  margin-top: 8rem;
+  /* margin-top: 8rem; s*/
 }
 
 .social {
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .social a {
@@ -838,6 +873,7 @@ p span {
 
 p a {
   color: var(--red);
+  font-weight: 550;
 }
 
 .grid {
@@ -858,17 +894,18 @@ p a {
 }
 .field-error {
   background: red;
-
   height: 100%;
-  margin-top: 0.5rem;
-  border-radius: 5rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
 }
+
 .field-error p {
   margin-top: 0;
   color: white;
   font-size: 1.3rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
 }
+
 .promotion {
   background: linear-gradient(-45deg, var(--red), #8589ff);
   padding: 1rem;
@@ -922,15 +959,25 @@ p a {
 } */
 
 /* responsive code */
-@media (max-width: 991px) {
+@media (max-width: 1000px) {
   html {
-    font-size: 40%;
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 900px) {
+  [class*="grid"] {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  html {
+    font-size: 70%;
   }
 }
 
 @media (max-width: 600px) {
   html {
-    font-size: 55%;
+    font-size: 60%;
   }
 
   [class*="grid"] {
@@ -954,8 +1001,10 @@ p a {
     width: 80%;
   }
   .sp {
-    padding: 5rem 0;
+    /* padding: 5rem 0;*/
+    padding: 0;
   }
+
   .layout {
     flex-direction: column;
   }
@@ -1092,4 +1141,13 @@ p a {
     .container{
     padding: 0 20px;
     }
+}
+
+
+.suscribed-success {
+    font-weight:600;
+    color: #ffffff;
+    padding: 20px;
+    background:  var(--green);
+    border-radius: 10px;
 }

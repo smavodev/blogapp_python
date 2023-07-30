@@ -37,11 +37,11 @@
             <form method="POST">
               {% csrf_token %}
               {{subscribe_form}}
-              <button class="btn btn-primary">Subscribe</button>
+              <button class="btn btn-primary-suscribed">Subscribe</button>
             </form>
             {% endif %}
             {% if subscribe_successful %}
-            <br><p>Subscribed Successfully</p>
+            <br><p class="suscribed-success">Subscribed Successfully</p>
             {% endif %}
           </div>
         </center>
