@@ -24,7 +24,10 @@
                 <h1 class="title">{{profile.user.first_name}} {{profile.user.last_name}}</h1>
                 <br>
                 <img class="profile-image" src="{{profile.profile_image.url}}" alt="" />
-                <p class="profile-bio"> {{profile.bio|safe}} </p>
+                <div class="profile-bio">
+                  <p > {{profile.bio|safe}} </p>
+                </div>
+
               </div>
             </center>
             <section class="sp">

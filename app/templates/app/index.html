@@ -11,10 +11,11 @@
         <center>
           <div class="search-bar">
             <input type="text" placeholder="Search" />
-            <div class="animated-search" onclick="searchbar()">
+            <a href="{% url 'search' %}" class="animated-search" onclick="searchbar()">
               <i class="uil uil-search"></i>
-            </div>
+            </a>
           </div>
+
           <div class="typo">
             {% if website_info.title %}
               <h1 class="title">{{website_info.title}}</h1>

@@ -916,9 +916,11 @@ p a {
   width: 40%;
   margin: 0rem !important;
 }
-main {
+
+/* main {
   padding-top: 10rem !important;
-}
+} */
+
 /* responsive code */
 @media (max-width: 991px) {
   html {
@@ -998,7 +1000,7 @@ main {
   .links {
     position: fixed;
     flex-direction: column;
-    height: 90vh;
+    /*height: 90vh;*/
     background: var(--red);
     width: 100%;
     justify-content: space-around;
@@ -1077,5 +1079,17 @@ main {
     box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
     transition: 0.3s;
     margin: 10px 0;
-    border-radius: 10px;
+    border-top-left-radius : 10px;
+    border-top-right-radius : 10px;
+
+}
+
+@media (max-width: 600px) {
+    .profile-bio {
+        padding: 0;
+    }
+
+    .container{
+    padding: 0 20px;
+    }
 }
