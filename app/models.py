@@ -90,6 +90,9 @@ class Profile(models.Model):
         return super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
+        return self.user.first_name
+
+    def __unicode__(self):
         return f'{self.first_name} {self.last_name}'
 
 
