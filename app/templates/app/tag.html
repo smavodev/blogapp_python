@@ -46,7 +46,11 @@
                             <img src="{{post.author.profile.profile_image.url}}" alt="" />
                           </div>
                           <div class="details">
-                            <p>{{post.author.first_name}}</p>
+                            {% if post.author.first_name %}
+                              <p>{{post.author.first_name}}</p>
+                            {% else %}
+                              <p>{{post.author.profile.user}}</p>
+                            {% endif %}
                             <small>{{post.created_date|date}}</small>
                           </div>
                         </div>
@@ -81,7 +85,11 @@
                               <img src="{{post.author.profile.profile_image.url}}" alt="" />
                             </div>
                             <div class="details">
-                              <p>{{post.author.first_name}}</p>
+                              {% if post.author.first_name %}
+                                <p>{{post.author.first_name}}</p>
+                              {% else %}
+                                <p>{{post.author.profile.user}}</p>
+                              {% endif %}
                               <small>{{post.created_date|date}}</small>
                             </div>
                           </div>
