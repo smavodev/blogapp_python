@@ -32,8 +32,12 @@ class Post(models.Model):
     is_featured = models.BooleanField(default=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     bookmarks = models.ManyToManyField(User, related_name="bookmarks", default=None, blank=True)
+    likes = models.ManyToManyField(User, related_name="post_like", default=None, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
+
+    def number_of_likes(self):
+        return self.likes.count()
 
     class Meta:
         verbose_name = 'posts'

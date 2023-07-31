@@ -54,6 +54,13 @@ def post_page(request, slug):
         bookmarked = True
     is_bookmarked = bookmarked
 
+    # Liked logic
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        liked = True
+    number_of_likes = post.number_of_likes()
+    post_is_liked = liked
+
     if request.POST:
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid:
@@ -93,6 +100,8 @@ def post_page(request, slug):
         'form': form,
         'comments': comments,
         'is_bookmarked': is_bookmarked,
+        'post_is_liked': post_is_liked,
+        'number_of_likes': number_of_likes,
         'tags': tags,
         'recent_posts': recent_posts,
         'top_authors': top_authors,
@@ -206,6 +215,16 @@ def bookmark_post(request, slug):
         post.bookmarks.remove(request.user)
     else:
         post.bookmarks.add(request.user)
+    return HttpResponseRedirect(reverse('post_page', args=[str(slug)]))
+
+
+def like_post(request, slug):
+    print("PRINT", request.POST.get('post_id'))
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
     return HttpResponseRedirect(reverse('post_page', args=[str(slug)]))
 
 
