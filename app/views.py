@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.db.models import Count, Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from app.models import Post, Tag, Comments, Profile, WebsiteMeta
 from app.forms import CommentForm, SubscribeForm, NewUserForm
 from django.http import HttpResponseRedirect
@@ -48,6 +48,12 @@ def post_page(request, slug):
     comments = Comments.objects.filter(post=post, parent=None)
     form = CommentForm()
 
+    # Bookmark logic
+    bookmarked = False
+    if post.bookmarks.filter(id=request.user.id).exists():
+        bookmarked = True
+    is_bookmarked = bookmarked
+
     if request.POST:
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid:
@@ -86,6 +92,7 @@ def post_page(request, slug):
         'post': post,
         'form': form,
         'comments': comments,
+        'is_bookmarked': is_bookmarked,
         'tags': tags,
         'recent_posts': recent_posts,
         'top_authors': top_authors,
@@ -190,6 +197,16 @@ def register_user(request):
         'form': form
     }
     return render(request, 'registration/registration.html', context)
+
+
+def bookmark_post(request, slug):
+    print("PRINT", request.POST.get('post_id'))
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    if post.bookmarks.filter(id=request.user.id).exists():
+        post.bookmarks.remove(request.user)
+    else:
+        post.bookmarks.add(request.user)
+    return HttpResponseRedirect(reverse('post_page', args=[str(slug)]))
 
 
 def all_posts(request):

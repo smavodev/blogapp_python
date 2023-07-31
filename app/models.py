@@ -31,6 +31,7 @@ class Post(models.Model):
     view_count = models.IntegerField(null=True, blank=True)
     is_featured = models.BooleanField(default=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    bookmarks = models.ManyToManyField(User, related_name="bookmarks", default=None, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 

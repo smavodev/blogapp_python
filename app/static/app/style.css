@@ -171,8 +171,8 @@ header .container {
   background: white;
   box-shadow: 0 15px 20px #00000018;
   cursor: pointer;
-  /* margin-top: 10rem;
-  z-index: 2;*/
+  margin-top: 2rem;
+  /* z-index: 2;*/
 }
 
 .search-bar input {
