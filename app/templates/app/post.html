@@ -63,9 +63,13 @@
                     <p>{{post.content|safe}}</p>
 
                     <div class="blog-tags">
-                      {% for tag in post.tags.all %}
-                        <a href="{% url 'tag_page' tag.slug %}" class="tag">{{tag.name}}</a>
-                      {% endfor %}
+                      {% if post.tags.all %}
+                        {% for tag in post.tags.all %}
+                          <a href="{% url 'tag_page' tag.slug %}" class="tag">{{tag.name}}</a>
+                        {% endfor %}
+                      {% else %}
+                          <a href="{% url 'tag_page' tag.slug %}" class="tag"></a>
+                      {% endif %}
                       <div class="social-share">
                         <div class="reactions">
                           <div class="likes">
@@ -214,7 +218,9 @@
             <div class="block r-blog">
 
               <h2 class="title2">Related Blogs</h2>
-              {% if posts %}
+
+              {% if related_posts %}
+
                 {% for post in related_posts %}
                 <!-- card -->
                 <a href="#">

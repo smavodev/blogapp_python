@@ -60,7 +60,7 @@
                             {% else %}
                               <p>{{post.author.profile.user}}</p>
                             {% endif %}
-                            <small>{{post.last_updated|date}}</small>
+                            <small>{{post.modified_date|date}}</small>
                           </div>
                         </div>
                       </div>
@@ -99,7 +99,7 @@
                             {% else %}
                               <p>{{post.author.profile.user}}</p>
                             {% endif %}
-                            <small>{{post.last_updated|date}}</small>
+                            <small>{{post.modified_date|date}}</small>
                           </div>
                         </div>
                       </div>

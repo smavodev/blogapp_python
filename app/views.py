@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import render, redirect
 from app.models import Post, Tag, Comments, Profile, WebsiteMeta
 from app.forms import CommentForm, SubscribeForm, NewUserForm
@@ -114,7 +114,7 @@ def author_page(request, slug):
     profile = Profile.objects.get(slug=slug)
 
     top_posts = Post.objects.filter(author=profile.user).order_by('-view_count')[0:2]
-    recent_posts = Post.objects.filter(author=profile.user).order_by('-last_updated')[0:2]
+    recent_posts = Post.objects.filter(author=profile.user).order_by('-modified_date')[0:2]
     top_authors = User.objects.annotate(number=Count('post')).order_by('number')[0:3]
 
     context = {
@@ -127,15 +127,32 @@ def author_page(request, slug):
 
 
 def search_posts(request):
-    search_query = ' '
-    if request.GET.get('q'):
-        search_query = request.GET.get('q')
 
-    posts = Post.objects.filter(title__icontains=search_query)
+    # paged_posts = Post.objects.all()
+    paged_posts = None
+    post_count = None
+    search_query = ''
 
-    print('Search :', posts)
+    if 'search_query' in request.GET:
+        search_query = request.GET['search_query']
+        if search_query:
+            # posts = Post.objects.order_by(title__icontains=search_query)
+            posts = Post.objects.order_by('-created_date').filter(Q(title__icontains=search_query))
+
+            if 'search_query' in request.GET and request.GET['search_query']:
+                page = request.GET.get('page')
+                search_query = request.GET['search_query']
+                paginator = Paginator(posts, 6)
+            paged_posts = paginator.get_page(page)
+            post_count = posts.count()
+
+        if not search_query:
+            posts = ''
+            post_count = ''
+
     context = {
-        'posts': posts,
+        'posts': paged_posts,
+        'product_count': post_count,
         'search_query': search_query
     }
     return render(request, 'app/search.html', context)
@@ -176,6 +193,7 @@ def register_user(request):
 
 
 def all_posts(request):
+
     all_posts = Post.objects.all()
 
     paginator = Paginator(all_posts, 6)

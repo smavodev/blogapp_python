@@ -13,8 +13,8 @@
               </a>
               <h1>Search</h1>
             </div>
-            <form class="search-bar s-active" method="GET">
-              <input type="text" placeholder="Search" name="q" value="{{search_query}}"/>
+            <form action="{% url 'search' %}" class="search-bar s-active" method="GET">
+              <input type="text" placeholder="Search" name="search_query" value="{{search_query}}"/>
               <button type="submit" class="animated-search">
                 <i class="uil uil-search"></i>
               </button>
@@ -33,7 +33,12 @@
               <div class="card">
                 <div class="post-img">
                   <img src="{{post.image.url}}" alt="" />
-                  <div class="tag">{{post.tags.all.0.name}}</div>
+                  {% if post.tags.all.0.name %}
+                    <div class="tag">{{post.tags.all.0.name}}</div>
+                  {% else %}
+                    <div class="tag"></div>
+                  {% endif %}
+
                 </div>
                 <div class="card-content">
                   <h3>
@@ -44,7 +49,13 @@
                       <img src="{{post.author.profile.profile_image.url}}" alt="" />
                     </div>
                     <div class="details">
-                      <p>{{post.author.first_name}}</p>
+
+                      {% if post.author.first_name %}
+                        <p>{{post.author.first_name}}</p>
+                      {% else %}
+                        <p>{{post.author.profile.user}}</p>
+                      {% endif %}
+
                       <small>{{post.created_date|date}}</small>
                     </div>
                   </div>
@@ -57,6 +68,93 @@
             <p>No result found for <strong>{{search_query}}</strong>. Please try again.</p>
           {% endif %}
         </div>
+
+        {% if search_query %}
+        <!-- Pagination -->
+        <nav class="mt-4" aria-label="Page navigation sample">
+          <ul class="pagination">
+          {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?{% if search_query %}search_query={{search_query}}&{% endif %}page={{ posts.previous_page_number }}">« Previous page</a></li>
+          {% else %}
+          <li class="page-item disabled left-page"><a class="page-link" href="#">« Previous page</a></li>
+
+            {% if posts.number > 3 %}
+              <li class="page-item "><a class="page-link" href="?{% if search_query %}search_query={{search_query}}&{% endif %}page=1">1</a></li>
+              {% if posts.number > 4 %}
+                  <li class="page-item "><a class="page-link"><span>...</span></a></li>
+              {% endif %}
+            {% endif %}
+
+          {% endif %}
+
+          {% for num in posts.paginator.page_range %}
+            {% if posts.number == num %}
+              <li class="page-item active"> <a class="page-link" href="?{% if search_query %}search_query={{search_query}}&{% endif %}page={{ num }}">{{ num }}</a></li>
+            {% elif num > posts.number|add:'-2' and num < posts.number|add:'2' %}
+              <li class="page-item "> <a class="page-link" href="?{% if search_query %}search_query={{search_query}}&{% endif %}page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if posts.has_next %}
+            {% if posts.number < posts.paginator.num_pages|add:'-2' %}
+            <li class="page-item "><a class="page-link"><span>...</span></a></li>
+              <li class="page-item "> <a class="page-link" href="?{% if search_query %}search_query={{search_query}}&{% endif %}page={{ posts.paginator.num_pages }}">{{ posts.paginator.num_pages }}</a></li>
+            {% elif posts.number < posts.paginator.num_pages|add:'-2' %}
+              <li class="page-item"> <a class="page-link" href="?{% if search_query %}search_query={{search_query}}&{% endif %}page={{ posts.paginator.num_pages }}">{{ posts.paginator.num_pages }}</a></li>
+            {% endif %}
+          {% endif %}
+
+          {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?{% if search_query %}search_query={{search_query}}&{% endif %}page={{ posts.next_page_number }}">Next Page »</a></li>
+          {% else %}
+            <li class="page-item disabled right-page"><a class="page-link" href="#">Next Page</a></li>
+          {% endif %}
+
+          </ul>
+        </nav>
+        {% else %}
+        <!-- Pagination -->
+        <nav class="mt-4" aria-label="Page navigation sample">
+          <ul class="pagination">
+          {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">« Previous page</a></li>
+          {% else %}
+            <li class="page-item disabled left-page"><a class="page-link" href="#">« Previous page</a></li>
+            {% if posts.number > 3 %}
+              <li class="page-item "><a class="page-link" href="?page=1">1</a></li>
+              {% if posts.number > 4 %}
+                  <li class="page-item "><a class="page-link"><span>...</span></a></li>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+          {% for num in posts.paginator.page_range %}
+            {% if posts.number == num %}
+              <li class="page-item active"> <a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% elif num > posts.number|add:'-2' and num < posts.number|add:'2' %}
+              <li class="page-item "> <a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if posts.has_next %}
+            {% if posts.number < posts.paginator.num_pages|add:'-2' %}
+            <li class="page-item "><a class="page-link"><span>...</span></a></li>
+              <li class="page-item "> <a class="page-link" href="?page={{ posts.paginator.num_pages }}">{{ posts.paginator.num_pages }}</a></li>
+            {% elif posts.number < posts.paginator.num_pages|add:'-2' %}
+              <li class="page-item"> <a class="page-link" href="?page={{ posts.paginator.num_pages }}">{{ posts.paginator.num_pages }}</a></li>
+            {% endif %}
+          {% endif %}
+
+          {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next Page »</a></li>
+          {% else %}
+            <li class="page-item disabled right-page"><a class="page-link" href="#">Next Page</a></li>
+          {% endif %}
+
+          </ul>
+        </nav>
+        {% endif %}
+
       </div>
     </section>
 {% endblock content %}

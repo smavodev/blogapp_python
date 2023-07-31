@@ -171,8 +171,8 @@ header .container {
   background: white;
   box-shadow: 0 15px 20px #00000018;
   cursor: pointer;
-  margin-top: 10rem;
-  z-index: 2;
+  /* margin-top: 10rem;
+  z-index: 2;*/
 }
 
 .search-bar input {
@@ -329,7 +329,7 @@ header .container {
 
 .grid-3 {
   grid-template-columns: repeat(3, 1fr);
-  gap: 5rem;
+  gap: 3rem;
 }
 
 .card {
@@ -407,7 +407,13 @@ header .container {
 
 /* footer */
 .grid-4 {
-  grid-template-columns: 1fr 2fr 2fr 3fr;
+  grid-template-columns: 2fr 2fr;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.grid-1 {
+  grid-template-columns: 1fr;
   align-items: flex-start;
   text-align: center;
 }
@@ -1072,6 +1078,7 @@ p a {
   }
   .menu {
     font-size: 3.5rem;
+    gap: 1rem;
     display: block !important;
   }
   header .btn {
@@ -1139,10 +1146,9 @@ p a {
     }
 
     .container{
-    padding: 0 20px;
+        padding: 10px 20px;
     }
 }
-
 
 .suscribed-success {
     font-weight:600;
@@ -1162,6 +1168,7 @@ p a {
     padding-left: 0;
     list-style: none;
     border-radius: 0.37rem;
+    justify-content: end;
 }
 
 
@@ -1201,4 +1208,20 @@ p a {
     border: 1px solid #ddd;
     border-top-right-radius : 1rem;
     border-bottom-right-radius : 1rem;
+}
+
+@media (max-width: 850px) {
+
+    div > .link {
+        gap: 1rem !important;
+    }
+
+    .links > a {
+        font-size: 1.2rem;
+        width: 80%;
+    }
+
+    .container-fluid {
+        padding: 0 2rem;
+    }
 }

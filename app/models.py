@@ -25,10 +25,9 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(verbose_name="Título", max_length=200, null=False)
     content = RichTextField(verbose_name="Contenido")
-    last_updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=200, unique=True, null=False)
     image = models.ImageField(null=False, blank=False, upload_to="images/post")
-    tags = models.ManyToManyField(Tag, blank=True, related_name='post')
+    tags = models.ManyToManyField(Tag, null=False, related_name='post')
     view_count = models.IntegerField(null=True, blank=True)
     is_featured = models.BooleanField(default=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -38,7 +37,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'posts'
         verbose_name_plural = 'posts'
-        ordering = ['title', 'last_updated']
+        ordering = ['title', 'modified_date']
 
     def __str__(self):
         return self.title

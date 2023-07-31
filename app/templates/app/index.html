@@ -12,10 +12,9 @@
           <div class="search-bar">
             <input type="text" placeholder="Search" />
             <a href="{% url 'search' %}" class="animated-search" onclick="searchbar()">
-              <i class="uil uil-search"></i>
+            <i class="uil uil-search"></i>
             </a>
           </div>
-
           <!-- Meta -->
           <div class="typo">
             {% if website_info.title %}
@@ -127,7 +126,13 @@
             <div class="card">
               <div class="post-img">
                 <img src="{{post.image.url}}" alt="" />
-                <div class="tag">{{post.tags.all.0.name}}</div>
+
+                {% if post.tags.all.0.name %}
+                  <div class="tag">{{post.tags.all.0.name}}</div>
+                {% else %}
+                  <div class="tag"></div>
+                {% endif %}
+
               </div>
               <div class="card-content">
                 <h3>
