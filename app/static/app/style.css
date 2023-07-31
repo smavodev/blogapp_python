@@ -1151,3 +1151,54 @@ p a {
     background:  var(--green);
     border-radius: 10px;
 }
+
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.37rem;
+}
+
+
+.page-item.active .page-link {
+
+    color: #fff;
+    background-color: var(--red);
+    border-color: var(--red);
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: var(--red);
+    background-color: #fff;
+    border: 1px solid var(--red);
+}
+
+.page-item.disabled .page-link{
+    cursor: not-allowed;
+    pointer-events:none;
+    border: 1px solid #ddd;
+    color: #777;
+    background-color: #fff;
+}
+
+.page-item.disabled .left-page {
+    border: 1px solid #ddd;
+    border-top-left-radius : 1rem;
+    border-bottom-left-radius : 1rem;
+}
+
+.page-item.disabled .right-page {
+    border: 1px solid #ddd;
+    border-top-right-radius : 1rem;
+    border-bottom-right-radius : 1rem;
+}

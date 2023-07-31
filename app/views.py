@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from app.models import Post, Tag, Comments, Profile, WebsiteMeta
@@ -172,4 +173,17 @@ def register_user(request):
         'form': form
     }
     return render(request, 'registration/registration.html', context)
+
+
+def all_posts(request):
+    all_posts = Post.objects.all()
+
+    paginator = Paginator(all_posts, 6)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
+
+    context = {
+        'all_posts': paged_posts
+    }
+    return render(request, 'app/all_posts.html', context)
 

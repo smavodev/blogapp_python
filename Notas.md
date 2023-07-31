@@ -60,3 +60,32 @@ CKEDITOR_CONFIGS = {
     }
 }
 ```
+
+### Ejemplos de Paginacion
+**https://stackoverflow.com/questions/30864011/display-only-some-of-the-page-numbers-by-django-pagination**
+
+```
+{% if all_posts.has_other_pages %}
+	<ul class="pagination">
+		{% if all_posts.has_previous %}
+			<li class="page-item"><a class="page-link" href="?page={{all_posts.previous_page_number}}">Previous</a></li>
+		{% else %}
+			<li class="page-item disabled left-page"><a class="page-link" href="#">Previous</a></li>
+		{% endif %}
+
+		{% for i in all_posts.paginator.page_range %}
+			{% if all_posts.number == i %}
+				<li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+			{% else %}
+				<li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+			{% endif %}
+		{% endfor %}
+
+		{% if all_posts.has_next %}
+			<li class="page-item"><a class="page-link" href="?page={{all_posts.next_page_number}}">Next</a></li>
+		{% else %}
+			<li class="page-item disabled right-page"><a class="page-link" href="#">Next</a></li>
+		{% endif %}
+	</ul>
+{% endif %}
+```
