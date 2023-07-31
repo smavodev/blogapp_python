@@ -17,17 +17,17 @@
           </div>
           <div class="link">
             {% if user.is_authenticated %}
-            <h2>Your Favourites</h2>
-            <div class="q-link">
-              <a href="#">Likes</a>
-              <a href="#">Bookmarks</a>
-            </div>
+                <h2>Your Favourites</h2>
+                <div class="q-link">
+                  <a href="{% url 'all_liked_posts' %}">Likes</a>
+                  <a href="{% url 'all_bookmarked_posts' %}">Bookmarks</a>
+                </div>
             {% else %}
-            <h2>Register with us</h2>
-            <div class="q-link">
-              <a href="{% url 'login' %}">Login</a>
-              <a href="{% url 'register' %}">Register</a>
-            </div>
+                <h2>Register with us</h2>
+                <div class="q-link">
+                  <a href="{% url 'login' %}">Login</a>
+                  <a href="{% url 'register' %}">Register</a>
+                </div>
             {% endif %}
           </div>
         </div>

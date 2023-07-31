@@ -241,3 +241,29 @@ def all_posts(request):
     }
     return render(request, 'app/all_posts.html', context)
 
+
+def all_bookmarked_posts(request):
+    all_bookmarked_posts = Post.objects.filter(bookmarks=request.user)
+
+    paginator = Paginator(all_bookmarked_posts, 6)
+    page = request.GET.get('page')
+    all_bookmarked_paged_posts = paginator.get_page(page)
+
+    context = {
+        'all_bookmarked_posts': all_bookmarked_paged_posts
+    }
+    return render(request, 'app/all_bookmarked_posts.html', context)
+
+
+def all_liked_posts(request):
+    all_liked_posts = Post.objects.filter(likes=request.user)
+
+    paginator = Paginator(all_liked_posts, 6)
+    page = request.GET.get('page')
+    all_liked_paged_posts = paginator.get_page(page)
+
+    context = {
+        'all_liked_posts': all_liked_paged_posts
+    }
+    return render(request, 'app/all_liked_posts.html', context)
+

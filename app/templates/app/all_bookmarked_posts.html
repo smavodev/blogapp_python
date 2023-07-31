@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}Blog | All Bookmarked Posts{% endblock title %}
+{% block content %}
+
+<main>
+  <div class="container">
+    <div class="page-top">
+      <div class="top flex">
+        <div class="page-name">
+          <a href="" class="learn">
+            <span class="material-icons"> keyboard_return </span> Go back
+          </a>
+          <h1>All Bookmarked Posts</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<section class="sp">
+  <div class="container">
+
+    <div class="blog-tags">
+      <div class="container">
+        <div class="grid-3">
+          {% for post in all_bookmarked_posts  %}
+              <!-- card -->
+              <a href="{% url 'post_page' post.slug %}">
+                  <div class="card">
+                    <div class="post-img">
+                      <img src="{{post.image.url}}" alt="" />
+
+                      {% if post.tags.all.0.name %}
+                        <div class="tag">{{post.tags.all.0.name}}</div>
+                      {% else %}
+                        <div class="tag"></div>
+                      {% endif %}
+
+                    </div>
+                    <div class="card-content">
+                      <h3>
+                        {{post.title}}
+                      </h3>
+                      <div class="author">
+                        <div class="profile-pic">
+                          <img src="{{post.author.profile.profile_image.url}}" alt="" />
+                        </div>
+                        <div class="details">
+                          {% if post.author.first_name %}
+                            <p>{{post.author.first_name}}</p>
+                          {% else %}
+                            <p>{{post.author.profile.user}}</p>
+                          {% endif %}
+                          <small>{{post.created_date|date}}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              <!-- card end-->
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <!-- Pagination -->
+    <nav class="mt-4" aria-label="Page navigation sample">
+      <ul class="pagination">
+        {% if all_bookmarked_posts.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ all_bookmarked_posts.previous_page_number }}">« Previous page</a></li>
+        {% else %}
+        <li class="page-item disabled left-page"><a class="page-link" href="#">« Previous page</a></li>
+
+          {% if all_bookmarked_posts.number > 3 %}
+            <li class="page-item "><a class="page-link" href="?page=1">1</a></li>
+            {% if all_bookmarked_posts.number > 4 %}
+                <li class="page-item "><a class="page-link"><span>...</span></a></li>
+            {% endif %}
+          {% endif %}
+
+        {% endif %}
+
+        {% for num in all_bookmarked_posts.paginator.page_range %}
+          {% if all_bookmarked_posts.number == num %}
+            <li class="page-item active"> <a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% elif num > all_bookmarked_posts.number|add:'-2' and num < all_bookmarked_posts.number|add:'2' %}
+            <li class="page-item "> <a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if all_bookmarked_posts.has_next %}
+          {% if all_bookmarked_posts.number < all_bookmarked_posts.paginator.num_pages|add:'-2' %}
+          <li class="page-item "><a class="page-link"><span>...</span></a></li>
+            <li class="page-item "> <a class="page-link" href="?page={{ all_bookmarked_posts.paginator.num_pages }}">{{ all_bookmarked_posts.paginator.num_pages }}</a></li>
+          {% elif all_bookmarked_posts.number < all_bookmarked_posts.paginator.num_pages|add:'-2' %}
+            <li class="page-item"> <a class="page-link" href="?page={{ all_bookmarked_posts.paginator.num_pages }}">{{ all_bookmarked_posts.paginator.num_pages }}</a></li>
+          {% endif %}
+        {% endif %}
+
+        {% if all_bookmarked_posts.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ all_bookmarked_posts.next_page_number }}">Next Page »</a></li>
+        {% else %}
+		  <li class="page-item disabled right-page"><a class="page-link" href="#">Next Page</a></li>
+	    {% endif %}
+
+      </ul>
+    </nav>
+
+  </div>
+</section>
+
+{% endblock content %}
