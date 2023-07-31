@@ -23,11 +23,11 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(verbose_name="Título", max_length=200)
+    title = models.CharField(verbose_name="Título", max_length=200, null=False)
     content = RichTextField(verbose_name="Contenido")
     last_updated = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=200, unique=True)
-    image = models.ImageField(null=True, blank=True, upload_to="images/post")
+    slug = models.SlugField(max_length=200, unique=True, null=False)
+    image = models.ImageField(null=False, blank=False, upload_to="images/post")
     tags = models.ManyToManyField(Tag, blank=True, related_name='post')
     view_count = models.IntegerField(null=True, blank=True)
     is_featured = models.BooleanField(default=False)
@@ -79,6 +79,8 @@ class Profile(models.Model):
     profile_image = models.ImageField(null=True, blank=True, upload_to="images/profile")
     slug = models.SlugField(max_length=200, unique=True)
     bio = RichTextField(verbose_name="Biografia")
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'profiles'

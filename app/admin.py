@@ -28,7 +28,8 @@ class SuscribeAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'slug')
+    list_display = ('user', 'slug', 'created_date', 'modified_date')
+    readonly_fields = ('created_date', 'modified_date')
 
 
 class WebsiteMetaAdmin(admin.ModelAdmin):

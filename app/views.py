@@ -77,8 +77,8 @@ def post_page(request, slug):
         post.view_count += 1
     post.save()
 
-    recent_posts = Post.objects.exclude(id=post.id).order_by('-last_updated')[0:3]
-    top_authors = User.objects.annotate(number=Count('post')).order_by('-number')
+    recent_posts = Post.objects.exclude(id=post.id).order_by('-modified_date')[0:3]
+    top_authors = User.objects.annotate(number=Count('post')).order_by('number')[0:3]
     tags = Tag.objects.all()
     related_posts = Post.objects.exclude(id=post.id).filter(author=post.author)[0:3]
     context = {
@@ -114,18 +114,19 @@ def author_page(request, slug):
 
     top_posts = Post.objects.filter(author=profile.user).order_by('-view_count')[0:2]
     recent_posts = Post.objects.filter(author=profile.user).order_by('-last_updated')[0:2]
-    top_authors = User.objects.annotate(number=Count('post')).order_by('number')
+    top_authors = User.objects.annotate(number=Count('post')).order_by('number')[0:3]
 
     context = {
         'profile': profile,
         'top_posts': top_posts,
         'recent_posts': recent_posts,
-        'top_authors': top_authors}
+        'top_authors': top_authors
+    }
     return render(request, 'app/author.html', context)
 
 
 def search_posts(request):
-    search_query = ''
+    search_query = ' '
     if request.GET.get('q'):
         search_query = request.GET.get('q')
 
@@ -157,6 +158,14 @@ def register_user(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            # Create profile
+            profile = Profile()
+            profile.user = user
+            profile.profile_image = 'images/profile/default.jpg'
+            profile.bio = 'Perfil por completar, por favor complete su registro'
+            profile.save()
+
             login(request, user)
             return redirect("/")
     context = {

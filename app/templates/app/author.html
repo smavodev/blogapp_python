@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog | {{profile.user.first_name}}{% endblock title %}
+{% block title %}Blog | {{profile.user}} {% endblock title %}
 
 {% block content %}
       <div class="container">
@@ -21,7 +21,11 @@
 
             <center>
               <div class="typo">
-                <h1 class="title">{{profile.user.first_name}} {{profile.user.last_name}}</h1>
+                {% if profile.user.first_name %}
+                  <h1 class="title">{{profile.user.first_name}} {{profile.user.last_name}}</h1>
+                {% else %}
+                  <h1 class="title">{{profile.user}}</h1>
+                {% endif %}
                 <br>
                 <img class="profile-image" src="{{profile.profile_image.url}}" alt="" />
                 <div class="profile-bio">
@@ -119,12 +123,14 @@
                   <img src="{{author.profile.profile_image.url}}" alt="" />
                 </div>
                 <div class="recent-content">
-                  <h3>
-                    {{author.first_name}}
-                  </h3>
+                  {% if author.first_name %}
+                    <h3> {{author.first_name}} </h3>
+                  {% else %}
+                    <h3 class="title">{{author.profile.user}}</h3>
+                  {% endif %}
                   <a class="learn" href="{% url 'author_page' author.profile.slug %}">Learn more
-                    <span class="material-icons"> trending_flat </span></a
-                  >
+                    <span class="material-icons"> trending_flat </span>
+                  </a>
                 </div>
               </div>
               {% endfor %}

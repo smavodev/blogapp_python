@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog | The Super Blog{% endblock title %}
+{% block title %}Blog | {{post.title}} {% endblock %}
 
 {% load static %}
 
@@ -56,7 +56,7 @@
                 <div class="blog-post">
 
                   <div class="post-img blog-img">
-                    <img src="{{post.image.url}}" alt="" />
+                      <img src="{{post.image.url}}" alt="" />
                   </div>
 
                   <div class="blog-post-content">
@@ -214,32 +214,36 @@
             <div class="block r-blog">
 
               <h2 class="title2">Related Blogs</h2>
-              {% for post in related_posts %}
-              <!-- card -->
-              <a href="#">
-                <div class="card">
-                  <div class="post-img">
-                    <img src="{{post.image.url}}" alt="" />
-                    <div class="tag">{{post.tags.all.0.name}}</div>
-                  </div>
-                  <div class="card-content">
-                    <h3>
-                      {{post.title}}
-                    </h3>
-                    <div class="author">
-                      <div class="profile-pic">
-                        <img src="{{post.author.profile.profile_image.url}}" alt="" />
-                      </div>
-                      <div class="details">
-                        <p>{{post.author.first_name}}</p>
-                        <small>{{post.last_updated|date}}</small>
+              {% if posts %}
+                {% for post in related_posts %}
+                <!-- card -->
+                <a href="#">
+                  <div class="card">
+                    <div class="post-img">
+                      <img src="{{post.image.url}}" alt="" />
+                      <div class="tag">{{post.tags.all.0.name}}</div>
+                    </div>
+                    <div class="card-content">
+                      <h3>
+                        {{post.title}}
+                      </h3>
+                      <div class="author">
+                        <div class="profile-pic">
+                          <img src="{{post.author.profile.profile_image.url}}" alt="" />
+                        </div>
+                        <div class="details">
+                          <p>{{post.author.first_name}}</p>
+                          <small>{{post.last_updated|date}}</small>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </a>
-              <!-- card end-->
-              {% endfor %}
+                </a>
+                <!-- card end-->
+                {% endfor %}
+              {% else %}
+                <p>No hay Post Relacionados por el Momento</p>
+              {% endif %}
             </div>
 
             <div class="block">
@@ -250,13 +254,14 @@
                   <img src="{{author.profile.profile_image.url}}" alt="" />
                 </div>
                 <div class="recent-content">
-                  <h3>
-                    {{author.first_name}}
-                  </h3>
-                  <a class="learn" href="{% url 'author_page' author.profile.slug %}"
-                    >Learn more
-                    <span class="material-icons"> trending_flat </span></a
-                  >
+                  {% if author.first_name %}
+                    <h3> {{author.first_name}} </h3>
+                  {% else %}
+                    <h3 class="title">{{author.profile.user}}</h3>
+                  {% endif %}
+                  <a class="learn" href="{% url 'author_page' author.profile.slug %}">Learn more
+                    <span class="material-icons"> trending_flat </span>
+                  </a>
                 </div>
               </div>
               {% endfor %}
