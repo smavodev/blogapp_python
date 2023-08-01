@@ -84,46 +84,46 @@
                       {% else %}
                           <a href="{% url 'tag_page' tag.slug %}" class="tag"></a>
                       {% endif %}
-                      <div class="social-share">
-                        <div class="reactions">
 
-                        <div class="likes">
-                          {% if user.is_authenticated %}
-                            <form action="{% url 'like_post' post.slug %}" method="post">
-                              {% csrf_token %}
-                              <input type="hidden" name="post_id" value="{{post.id}}">
-                              {% if post_is_liked %}
-                                <button type="submit">
-                                  <i class="fa-solid fa-heart"></i> <span>{{number_of_likes}}</span>
-                                </button>
-                              {% else %}
-                                <button type="submit">
-                                  <i class="uil uil-heart"></i> <span>{{number_of_likes}}</span>
-                                </button>
-                              {% endif %}
-                            </form>
-                          {% else %}
-                            <a class="track" href="{% url 'login' %}">
-                            <i class="uil uil-heart"></i> <span>{{number_of_likes}}</span>
-                            </a><br>
-                          {% endif %}
-                        </div>
+                    </div>
+
+                    <div class="social-share">
+                        <div class="reactions">
+                          <div class="likes">
+                            {% if user.is_authenticated %}
+                              <form action="{% url 'like_post' post.slug %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value="{{post.id}}">
+                                {% if post_is_liked %}
+                                  <button type="submit">
+                                    <i class="fa-solid fa-heart button-heart"></i> <span>{{number_of_likes}}</span>
+                                  </button>
+                                {% else %}
+                                  <button type="submit">
+                                    <i class="uil uil-heart"></i> <span>{{number_of_likes}}</span>
+                                  </button>
+                                {% endif %}
+                              </form>
+                            {% else %}
+                              <a class="track" href="{% url 'login' %}">
+                                <i class="uil uil-heart"></i> <span>{{number_of_likes}}</span>
+                              </a>
+                            <br>
+                            {% endif %}
+                          </div>
 
                           <div class="total-comments">
                             <i class="uil uil-comment-alt"></i>
-                            <span>10</span>
+                            {% if number_of_comments %}
+                              <p>{{number_of_comments}} Coment{{number_of_comments|pluralize}}</p>
+                            {% else %}
+                              <p>0</p>
+                            {% endif %}
                           </div>
                         </div>
-                        <div class="share">
-                          <div class="social">
-                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                          </div>
-                        </div>
+
                       </div>
-                    </div>
+
                   </div>
 
                   <div>
@@ -201,26 +201,26 @@
                   <br/>
 
                   <div class="comment-box">
-                  <h3>Leave a new comment to this post</h3>
-                  <p>
-                    Your email address will not be published. Required fields
-                    are marked<span>*</span>
-                  </p>
-                  <form method="POST">
-                    {% csrf_token %}
-                    {{form.content}}
-                    <div class="grid-3">
-                      <input type="hidden" name="post_id" value="{{post.id}}">
-                      {{form.name}}
-                      {{form.email}}
-                      {{form.website}}
-                    </div>
-                    <button class="btn btn-primary rounded">
-                      Post comment
-                    </button>
-                  </form>
+                    <h3>Leave a new comment to this post</h3>
+                    <p>
+                      Your email address will not be published. Required fields
+                      are marked<span>*</span>
+                    </p>
+                    <form method="POST">
+                      {% csrf_token %}
+                      {{form.content}}
+                      <div class="grid-3">
+                        <input type="hidden" name="post_id" value="{{post.id}}">
+                        {{form.name}}
+                        {{form.email}}
+                        {{form.website}}
+                      </div>
+                      <button class="btn btn-primary rounded">
+                        Post comment
+                      </button>
+                    </form>
+                  </div>
                 </div>
-
               </div>
             </section>
           </div>

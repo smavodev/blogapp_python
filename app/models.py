@@ -58,12 +58,12 @@ class Comments(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     parent = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='replies')
 
-    def __str__(self):
-        return self.content
-
     class Meta:
         verbose_name = 'comments'
         verbose_name_plural = 'comments'
+
+    def __str__(self):
+        return self.content
 
 
 class Subscribe(models.Model):

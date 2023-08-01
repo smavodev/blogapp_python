@@ -95,10 +95,14 @@ def post_page(request, slug):
     top_authors = User.objects.annotate(number=Count('post')).order_by('number')[0:3]
     tags = Tag.objects.all()
     related_posts = Post.objects.exclude(id=post.id).filter(author=post.author)[0:3]
+
+    number_of_comments = comments.count()
+
     context = {
         'post': post,
         'form': form,
         'comments': comments,
+        'number_of_comments': number_of_comments,
         'is_bookmarked': is_bookmarked,
         'post_is_liked': post_is_liked,
         'number_of_likes': number_of_likes,
