@@ -89,3 +89,25 @@ CKEDITOR_CONFIGS = {
 	</ul>
 {% endif %}
 ```
+
+
+## Add django-admin-honeypot 
+**https://pypi.org/project/django-admin-honeypot/**
+```pip install django-admin-honeypot```
+```pip install django-admin-honeypot-updated-2021``` # En caso salga error instalar esta versión
+
+
+## Add Theme Jazzmin 
+**https://django-jazzmin.readthedocs.io/configuration/**
+```pip install django-jazzmin```
+
+
+### Desactivar Jassmin y flujo basico
+```
+# 'jazzmin',
+# LOGOUT_REDIRECT_URL = '/accounts/login'
+```
+
+
+## Add Requierements 
+pip freeze > requirements.txt
