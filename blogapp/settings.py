@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'ckeditor',
     'django.contrib.admin',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -136,4 +138,24 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
     },
+}
+
+# Jazzmin Configure
+JAZZMIN_SETTINGS = {
+    "site_title": "Blog 4.2",  # Titulo Pagina
+    "site_header": None,  # "Ecommerce DJ4.2",
+    "site_brand": "Blog Django",  # Titulo Barra Vertical
+    "site_icon": None,  # "../static/images/favicon.ico",
+    "login_logo": None,
+
+    # Add your own branding here
+    "site_logo": None,  # "../static/images/Logo_Admin.jpg",
+    "welcome_sign": "Django BlogApp 4.2",
+
+    # Copyright on the footer
+    "copyright": "BlogApp 4.2",
+    "user_avatar": None,
+
+    # Whether to show the UI customizer on the sidebar
+    "show_ui_builder": True,
 }
