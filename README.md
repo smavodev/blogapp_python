@@ -18,3 +18,7 @@
 
 ## Iniciar el servidor con Django
 ```python manage.py runserver```
+
+
+## Load Dumpdata
+```python manage.py loaddata blog_app.json```

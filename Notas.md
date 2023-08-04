@@ -108,6 +108,8 @@ CKEDITOR_CONFIGS = {
 # LOGOUT_REDIRECT_URL = '/accounts/login'
 ```
 
-
 ## Add Requierements 
 pip freeze > requirements.txt
+
+## Add Dumpdata 
+```python manage.py dumpdata > blog_app.json```
