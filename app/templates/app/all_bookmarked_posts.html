@@ -23,42 +23,46 @@
     <div class="blog-tags">
       <div class="container">
         <div class="grid-3">
-          {% for post in all_bookmarked_posts  %}
-              <!-- card -->
-              <a href="{% url 'post_page' post.slug %}">
-                  <div class="card">
-                    <div class="post-img">
-                      <img src="{{post.image.url}}" alt="" />
+          {% if post %}
+            {% for post in all_bookmarked_posts  %}
+                <!-- card -->
+                <a href="{% url 'post_page' post.slug %}">
+                    <div class="card">
+                      <div class="post-img">
+                        <img src="{{post.image.url}}" alt="" />
 
-                      {% if post.tags.all.0.name %}
-                        <div class="tag">{{post.tags.all.0.name}}</div>
-                      {% else %}
-                        <div class="tag"></div>
-                      {% endif %}
+                        {% if post.tags.all.0.name %}
+                          <div class="tag">{{post.tags.all.0.name}}</div>
+                        {% else %}
+                          <div class="tag"></div>
+                        {% endif %}
 
-                    </div>
-                    <div class="card-content">
-                      <h3>
-                        {{post.title}}
-                      </h3>
-                      <div class="author">
-                        <div class="profile-pic">
-                          <img src="{{post.author.profile.profile_image.url}}" alt="" />
-                        </div>
-                        <div class="details">
-                          {% if post.author.first_name %}
-                            <p>{{post.author.first_name}}</p>
-                          {% else %}
-                            <p>{{post.author.profile.user}}</p>
-                          {% endif %}
-                          <small>{{post.created_date|date}}</small>
+                      </div>
+                      <div class="card-content">
+                        <h3>
+                          {{post.title}}
+                        </h3>
+                        <div class="author">
+                          <div class="profile-pic">
+                            <img src="{{post.author.profile.profile_image.url}}" alt="" />
+                          </div>
+                          <div class="details">
+                            {% if post.author.first_name %}
+                              <p>{{post.author.first_name}}</p>
+                            {% else %}
+                              <p>{{post.author.profile.user}}</p>
+                            {% endif %}
+                            <small>{{post.created_date|date}}</small>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              <!-- card end-->
-          {% endfor %}
+                  </a>
+                <!-- card end-->
+            {% endfor %}
+          {% else %}
+            <p>Aún no tienes <strong>Post Marcados</strong></p>
+          {% endif%}
         </div>
       </div>
     </div>
