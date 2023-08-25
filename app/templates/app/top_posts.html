@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog | All Posts {% endblock title %}
+{% block title %}Blog | Top Posts {% endblock title %}
 
 {% block content %}
 
@@ -13,7 +13,7 @@
             <span class="material-icons"> keyboard_return </span> Go back
           </a>
           <br>
-          <h1>All Posts</h1>
+          <h1>Top Posts</h1>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
 <section class="sp">
   <div class="container">
     <div class="grid-3">
-    {% for post in all_posts  %}
+    {% for post in top_posts  %}
         <!-- card -->
         <a href="{% url 'post_page' post.slug %}">
             <div class="card">
@@ -64,39 +64,39 @@
     <!-- Pagination -->
     <nav class="mt-4" aria-label="Page navigation sample">
       <ul class="pagination">
-        {% if all_posts.has_previous %}
-          <li class="page-item"><a class="page-link" href="?page={{ all_posts.previous_page_number }}">« Previous page</a></li>
+        {% if top_posts.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ top_posts.previous_page_number }}">« Previous page</a></li>
         {% else %}
         <li class="page-item disabled left-page"><a class="page-link" href="#">« Previous page</a></li>
 
-          {% if all_posts.number > 3 %}
+          {% if top_posts.number > 3 %}
             <li class="page-item "><a class="page-link" href="?page=1">1</a></li>
-            {% if all_posts.number > 4 %}
+            {% if top_posts.number > 4 %}
                 <li class="page-item "><a class="page-link"><span>...</span></a></li>
             {% endif %}
           {% endif %}
 
         {% endif %}
 
-        {% for num in all_posts.paginator.page_range %}
-          {% if all_posts.number == num %}
+        {% for num in top_posts.paginator.page_range %}
+          {% if top_posts.number == num %}
             <li class="page-item active"> <a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-          {% elif num > all_posts.number|add:'-2' and num < all_posts.number|add:'2' %}
+          {% elif num > top_posts.number|add:'-2' and num < top_posts.number|add:'2' %}
             <li class="page-item "> <a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
           {% endif %}
         {% endfor %}
 
-        {% if all_posts.has_next %}
-          {% if all_posts.number < all_posts.paginator.num_pages|add:'-2' %}
+        {% if top_posts.has_next %}
+          {% if top_posts.number < top_posts.paginator.num_pages|add:'-2' %}
           <li class="page-item "><a class="page-link"><span>...</span></a></li>
-            <li class="page-item "> <a class="page-link" href="?page={{ all_posts.paginator.num_pages }}">{{ all_posts.paginator.num_pages }}</a></li>
-          {% elif all_posts.number < all_posts.paginator.num_pages|add:'-2' %}
-            <li class="page-item"> <a class="page-link" href="?page={{ all_posts.paginator.num_pages }}">{{ all_posts.paginator.num_pages }}</a></li>
+            <li class="page-item "> <a class="page-link" href="?page={{ top_posts.paginator.num_pages }}">{{ top_posts.paginator.num_pages }}</a></li>
+          {% elif top_posts.number < top_posts.paginator.num_pages|add:'-2' %}
+            <li class="page-item"> <a class="page-link" href="?page={{ top_posts.paginator.num_pages }}">{{ top_posts.paginator.num_pages }}</a></li>
           {% endif %}
         {% endif %}
 
-        {% if all_posts.has_next %}
-          <li class="page-item"><a class="page-link" href="?page={{ all_posts.next_page_number }}">Next Page »</a></li>
+        {% if top_posts.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ top_posts.next_page_number }}">Next Page »</a></li>
         {% else %}
 		  <li class="page-item disabled right-page"><a class="page-link" href="#">Next Page</a></li>
 	    {% endif %}

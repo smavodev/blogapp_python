@@ -271,3 +271,30 @@ def all_liked_posts(request):
     }
     return render(request, 'app/all_liked_posts.html', context)
 
+
+def top_posts(request):
+
+    top_posts = Post.objects.all().order_by('-view_count')
+
+    paginator = Paginator(top_posts, 9)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
+
+    context = {
+        'top_posts': paged_posts
+    }
+    return render(request, 'app/top_posts.html', context)
+
+
+def recent_posts(request):
+
+    recent_posts = Post.objects.all().order_by('-created_date')
+
+    paginator = Paginator(recent_posts, 9)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
+
+    context = {
+        'recent_posts': paged_posts
+    }
+    return render(request, 'app/recent_posts.html', context)
