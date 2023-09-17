@@ -118,7 +118,7 @@ def tag_page(request, slug):
     tag = Tag.objects.get(slug=slug)
 
     top_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-view_count')[0:2]
-    recent_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-created_date')[0:2]
+    recent_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-created_date')[0:3]
 
     tags = Tag.objects.all()
     context = {
@@ -134,7 +134,7 @@ def author_page(request, slug):
     profile = Profile.objects.get(slug=slug)
 
     top_posts = Post.objects.filter(author=profile.user).order_by('-view_count')[0:2]
-    recent_posts = Post.objects.filter(author=profile.user).order_by('-modified_date')[0:2]
+    recent_posts = Post.objects.filter(author=profile.user).order_by('-created_date')[0:9]
     top_authors = User.objects.annotate(number=Count('post')).order_by('number')[0:3]
 
     context = {
@@ -278,7 +278,7 @@ def top_posts(request):
 
     top_posts = Post.objects.all().order_by('-view_count')
 
-    paginator = Paginator(top_posts, 9)
+    paginator = Paginator(top_posts, 6)
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
 
@@ -292,7 +292,7 @@ def recent_posts(request):
 
     recent_posts = Post.objects.all().order_by('-created_date')
 
-    paginator = Paginator(recent_posts, 9)
+    paginator = Paginator(recent_posts, 6)
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
 
