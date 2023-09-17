@@ -113,3 +113,36 @@ pip freeze > requirements.txt
 
 ## Add Dumpdata 
 ```python manage.py dumpdata > blog_app.json```
+
+
+## Add python-decouple
+* https://pypi.org/project/python-decouple/
+```pip install python-decouple```
+
+## Add psycopg2
+* https://pypi.org/project/psycopg2/
+```pip install psycopg2```
+
+## Update Database 
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT')
+    }
+}
+```
+

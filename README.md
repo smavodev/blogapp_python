@@ -21,4 +21,4 @@
 
 
 ## Load Dumpdata
-```python manage.py loaddata blog_app.json```
+```python manage.py loaddata blogapp.json```

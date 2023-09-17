@@ -23,7 +23,7 @@
     <div class="blog-tags">
       <div class="container">
         <div class="grid-3">
-          {% if post %}
+          {% if all_bookmarked_posts %}
             {% for post in all_bookmarked_posts  %}
                 <!-- card -->
                 <a href="{% url 'post_page' post.slug %}">
