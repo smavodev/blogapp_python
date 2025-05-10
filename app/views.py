@@ -17,6 +17,9 @@ def index(request):
     subscribe_form = SubscribeForm()
     subscribe_successful = None
 
+    # Asegúrate de inicializar la variable antes del if
+    website_info = None
+
     if WebsiteMeta.objects.all().exists():
         website_info = WebsiteMeta.objects.all()[0]
 

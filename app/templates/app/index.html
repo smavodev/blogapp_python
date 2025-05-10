@@ -75,6 +75,9 @@
       </div>
     </section>
     {% endif %}
+
+    <!-- Seccion Top Posts -->
+    {% if top_posts %}
     <section class="sp">
       <div class="container">
         <h1 class="sec-title">Top blogs</h1>
@@ -117,6 +120,10 @@
         </center>
       </div>
     </section>
+    {% endif %}
+
+    <!-- Seccion Post Recientes -->
+    {% if recent_posts%}
     <section class="sp">
       <div class="container">
         <h1 class="sec-title">New blogs</h1>
@@ -165,5 +172,6 @@
         </center>
       </div>
     </section>
+    {% endif %}
 
 {% endblock content %}
